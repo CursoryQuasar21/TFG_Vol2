@@ -1,0 +1,45 @@
+//entidades
+entity Empleado {
+	nombre String required minlength(3) maxlength(15),
+	apellidos String required minlength(4) maxlength(40),
+	dni String required minlength(9) maxlength(9)
+}
+entity Cliente{
+	nombre String required minlength(3) maxlength(15),
+	apellidos String required minlength(4) maxlength(40),
+	dni String required minlength(9) maxlength(9)
+}
+entity Coche{
+	color String required minlength(3) maxlength(15),
+    modelo String required minlength(3) maxlength(15),
+    marca String required minlength(3) maxlength(15),
+    anio Instant,
+    precio Double required min(1)
+}
+entity Moto{
+	color String required minlength(3) maxlength(15),
+    modelo String required minlength(3) maxlength(15),
+    marca String required minlength(3) maxlength(15),
+    anio Instant,
+    precio Double required min(1)
+}
+entity Venta{
+    total Double required min(1),
+    fecha Instant
+}
+relationship OneToMany{
+	Venta to Coche{venta}
+}
+relationship OneToMany{
+	Venta to Moto{venta}
+}
+relationship OneToMany{
+	Cliente{venta} to Venta
+}
+relationship OneToMany{
+	Empleado{venta} to Venta
+}
+// Set pagination options
+paginate all with pagination
+service all with serviceImpl
+

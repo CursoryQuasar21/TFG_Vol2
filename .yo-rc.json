@@ -41,6 +41,8 @@
     "packageFolder": "com/mycompany/myapp",
     "jwtSecretKey": "NTJlNWQ5MjcwZDIyYjRhNDE5ZTUxYzliZDBiMzlmNDZhYTM4ZjNmYTMzNzM1NzNhMzY0MzczNTYwNzAyOTNkZTNjM2NjMmFiYzk0MDdlYWU5NTNmN2JjZDIwMjA4YTQ3ZGJlM2U0OGJjYThkMWQ0YWIzMmYwODk4MDZkYzRjODM=",
     "clientPackageManager": "npm",
-    "languages": ["es", "en"]
+    "languages": ["es", "en"],
+    "entities": ["Empleado", "Cliente", "Coche", "Moto", "Venta"],
+    "lastLiquibaseTimestamp": 1634502186000
   }
 }

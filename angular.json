@@ -95,6 +95,7 @@
   },
   "defaultProject": "tfg-vol-2",
   "cli": {
+    "analytics": false,
     "packageManager": "npm"
   }
 }

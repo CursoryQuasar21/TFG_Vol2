@@ -1,13 +1,174 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
-
+/*
 .hipster {
   display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+  width: 100%;
+  height: 100%;
+  background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
   background-size: contain;
+}
+*/
+.hipster {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: url('../../content/images/wallPaper/fondo1.jpg') no-repeat center top;
+  background-size: contain;
+}
+
+.homeContenedor1 {
+  width: 100%;
+  height: 620px;
+  animation: CambiaFondo 20s ease-in-out infinite;
+}
+@keyframes CambiaFondo {
+  0% {
+    background: url('../../content/images/wallPaper/fondo1.jpg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  50% {
+    background: url('../../content/images/wallPaper/fondo2.jpg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  100% {
+    background: url('../../content/images/wallPaper/fondo3.jpg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+}
+
+.homeTitulo {
+  animation: CambiaTitulo 20s ease-in-out infinite;
+}
+@keyframes CambiaTitulo {
+  0% {
+    color: rgb(219, 219, 219);
+    padding-top: 15%;
+    padding-left: 5%;
+  }
+  50% {
+    color: rgb(49, 49, 49);
+    padding-top: 5%;
+    padding-left: 42%;
+    content: 'asdadassdasd';
+  }
+  75% {
+    color: rgb(49, 49, 49);
+    padding-top: 30%;
+    padding-left: 42%;
+    content: 'asdadassdasd';
+  }
+  100% {
+    color: rgb(255, 255, 255);
+    padding-top: 15%;
+    padding-left: 5%;
+    content: 'asdadassdasd';
+  }
+}
+
+.hometabla1 {
+  width: 100%;
+  height: 600px;
+  background-color: rgb(51, 51, 51);
+}
+.homeVideo1 {
+  height: 90%;
+  width: 90%;
+  margin-left: 10%;
+}
+.homeTabla1F1C1 {
+  padding-top: 10px;
+  width: 50%;
+}
+.homeTabla1TituloF1C2 {
+  font-size: 40px;
+  padding-top: 30px;
+  padding-left: 50px;
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration: underline rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+}
+.homeTabla1F2C2 {
+  display: inline-block;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.homeTexto1 {
+  text-align: justify;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+}
+
+.homeContenedor2 {
+  width: 100%;
+  height: 620px;
+  animation: CambiaFondo2 20s ease-in-out infinite;
+}
+
+@keyframes CambiaFondo2 {
+  0% {
+    background: url('../../content/images/wallPaper/imagen3.jpeg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  50% {
+    background: url('../../content/images/wallPaper/imagen2.jpeg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  100% {
+    background: url('../../content/images/wallPaper/imagen1.jpeg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+}
+
+.homeTitulo2_1 {
+  text-transform: uppercase;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 90px;
+  color: rgb(219, 219, 219);
+  padding-top: 10%;
+  padding-left: 10%;
+  //animation: CambiaTitulo2 2s linear infinite;
+}
+
+.homeTitulo2_2 {
+  text-transform: uppercase;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 40px;
+  color: rgb(219, 219, 219);
+  padding-left: 10%;
+  //animation: CambiaTitulo2 2s linear infinite;
+}
+
+.homeTitulo2_3 {
+  text-transform: uppercase;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 70px;
+  color: rgb(219, 219, 219);
+  padding-left: 10%;
+  //animation: CambiaTitulo2 2s linear infinite;
+}
+
+@keyframes CambiaTitulo2 {
+  0% {
+    color: rgb(255, 255, 255);
+  }
+  100% {
+    color: rgb(43, 43, 43);
+  }
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
@@ -17,7 +178,7 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .hipster {
-    background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
+    background: url('../../content/images/jhipster_family_member_0.svg') no-repeat center top;
     background-size: contain;
   }
 }

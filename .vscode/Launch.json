@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TFG_Vol2App<tfg_vol2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.mycompany.myapp.TFG_Vol2App",
+            "projectName": "TFG_Vol2",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-TfgVol2App<tfg-vol-2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.mycompany.myapp.TfgVol2App",
+            "projectName": "tfg-vol-2",
+            "args": ""
+        }
+    ]
+}
