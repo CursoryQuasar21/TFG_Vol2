@@ -1,7 +1,13 @@
 {
   "home": {
-    "title": "¡Bienvenido, Java Hipster!",
+    "title": "TFG_Vol2",
     "subtitle": "Esta es su página de inicio",
+    "homeTitulo": "Hacer que el mundo funcione mejor para todos",
+    "homeTabla1TituloF1C2": "Una nueva era para los negocios",
+    "homeTexto1": "Apollo hace que sea más fácil que nunca administrar un negocio de compra de automóviles. <br> <br> Con la tecnología más avanzada para la gestión, las empresas pueden expandirse a nuevos mercados alrededor del mundo, permitiendo así una mayor eficiencia y planificación de recursos. <br> <br> Junto con nuestros clientes, estamos construyendo un sistema más inclusivo donde más personas y pymes tienen acceso a mejores servicios, creando un mundo mejor y más solidario con el medio ambiente. <br> <br>",
+    "homeTitulo2_1": "Tu puedes",
+    "homeTitulo2_2": "manejar tu base de datos",
+    "homeTitulo2_3": "facil y eficientemente!",
     "logged": {
       "message": "Está conectado como \"{{username}}\"."
     },

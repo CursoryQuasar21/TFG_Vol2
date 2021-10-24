@@ -1,7 +1,18 @@
 {
   "home": {
-    "title": "Welcome, Java Hipster!",
+    "title": "TFG_Vol2",
     "subtitle": "This is your homepage",
+    "homeTitulo": "Making The World Work Better For All",
+    "homeTabla1TituloF1C2": "A new era of business",
+    "homeTexto1": "Apollo makes it easier than ever to run a car buying business.<br><br>With the most advanced technology for management, companies can expand into new markets around the world, thus enabling greater efficiency and resource planning.<br><br> Together with our clients, we are building a more inclusive system where more people and pymes have access to better services, creating a better world that is more supportive of the environment.<br><br>",
+    "homeTitulo2_1": "You can",
+    "homeTitulo2_2": "manage your database",
+    "homeTitulo2_3": "efficiently and easily!",
+    "home.homePriceHeder1": "Basic",
+    "home.homePriceHeder2": "Standar",
+    "home.homePriceHeder3": "Professional",
+    "home.homePriceHeder_3": "Per Month",
+    "home.homePricebutton": "Subscrive",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },
