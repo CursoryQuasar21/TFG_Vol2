@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface MotoRepository extends JpaRepository<Moto, Long> {
-    // @Query("select moto from Moto m where m.venta.id =:ventaId")
-    // Set<Moto>getMotosByVentaId(@Param("ventaId") Long ventaId);
+    @Query("select moto from Moto moto where moto.venta.id =:ventaId")
+    Set<Moto> getMotosByVentaId(@Param("ventaId") Long ventaId);
 
     @Modifying
     @Query("update Moto m set m.venta = null")

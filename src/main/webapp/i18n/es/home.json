@@ -8,6 +8,13 @@
     "homeTitulo2_1": "Tu puedes",
     "homeTitulo2_2": "manejar tu base de datos",
     "homeTitulo2_3": "facil y eficientemente!",
+    "homePriceHederTitle1": "Plan de Pago",
+    "homePriceHederTitle2": "Escoge el plan de pago mas adecuado para ti",
+    "homePriceHeder1": "Basico",
+    "homePriceHeder2": "Estandar",
+    "homePriceHeder3": "Profesional",
+    "homePriceHeder_3": "Por Mes",
+    "homePricebutton": "Subcrivete",
     "logged": {
       "message": "Está conectado como \"{{username}}\"."
     },
