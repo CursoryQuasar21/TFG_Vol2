@@ -8,11 +8,13 @@
     "homeTitulo2_1": "You can",
     "homeTitulo2_2": "manage your database",
     "homeTitulo2_3": "efficiently and easily!",
-    "home.homePriceHeder1": "Basic",
-    "home.homePriceHeder2": "Standar",
-    "home.homePriceHeder3": "Professional",
-    "home.homePriceHeder_3": "Per Month",
-    "home.homePricebutton": "Subscrive",
+    "homePriceHederTitle1": "Pricing Plan",
+    "homePriceHederTitle2": "Choose plan the right for you",
+    "homePriceHeder1": "Basic",
+    "homePriceHeder2": "Standar",
+    "homePriceHeder3": "Professional",
+    "homePriceHeder_3": "Per Month",
+    "homePricebutton": "Subscrive",
     "logged": {
       "message": "You are logged in as user \"{{username}}\"."
     },

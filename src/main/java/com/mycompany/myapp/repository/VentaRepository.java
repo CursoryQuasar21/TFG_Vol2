@@ -10,7 +10,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface VentaRepository extends JpaRepository<Venta, Long> {
-    @Query("select venta from Venta venta where venta.id =:ventaId")
-    Venta getCochesByVentaId(@Param("ventaId") Long ventaId);
-}
+public interface VentaRepository extends JpaRepository<Venta, Long> {}
