@@ -71,6 +71,17 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Page<Cliente> getClientsByFilter(Long id, String nombre, String apellidos, String dni, Pageable pageable) {
+        if (id == 0) return clienteRepository.getClientsByFilter(
+            nombre,
+            apellidos,
+            dni,
+            pageable
+        ); else return clienteRepository.getClientsByFilter(id, nombre, apellidos, dni, pageable);
+    }
+
+    @Override
     public void delete(Long id) {
         log.debug("Request to delete Cliente : {}", id);
         clienteRepository.deleteById(id);

@@ -34,6 +34,16 @@ export class EmpleadoService {
     return this.http.get<IEmpleado>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  //Tuberia para pasar los datos del filtraddo y devolver los resultados
+  filter(req?: any): Observable<HttpResponse<IEmpleado[]>> {
+    const options = createRequestOption(req);
+    options.set('id', req.id);
+    options.set('nombre', req.nombre);
+    options.set('apellidos', req.apellidos);
+    options.set('dni', req.dni);
+    return this.http.get<IEmpleado[]>(`${this.resourceUrl}/get-employees-by-filter`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IEmpleado[]>(this.resourceUrl, { params: options, observe: 'response' });

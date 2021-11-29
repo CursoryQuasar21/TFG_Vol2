@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import net.bytebuddy.dynamic.loading.PackageDefinitionStrategy.Definition.Undefined;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +20,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -153,7 +156,7 @@ public class ClienteResource {
     }
 
     /**
-     * {@code GET  /clientes/:id} : get the "id" cliente.
+     * {@code GET  /clientes/:id} : get clientes by filter.
      *
      * @param id the id of the cliente to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the cliente, or with status {@code 404 (Not Found)}.
@@ -163,6 +166,31 @@ public class ClienteResource {
         log.debug("REST request to get Cliente : {}", id);
         Optional<Cliente> cliente = clienteService.findOne(id);
         return ResponseUtil.wrapOrNotFound(cliente);
+    }
+
+    /**
+     * {@code GET  /clientes/:id&:nombre&:apellidos&:dni} : get list clientes.
+     * @param id the id of the cliente to retrieve.
+     * @param nombre the name of the cliente to retrieve.
+     * @param apellidos the apellidos of the cliente to retrieve.
+     * @param dni the dni of the cliente to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new cliente, or with status {@code 400 (Bad Request)} if the cliente has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @GetMapping(value = "/clientes/get-clients-by-filter", params = { "id", "nombre", "apellidos", "dni" })
+    public ResponseEntity<List<Cliente>> getClientByFilter(
+        @RequestParam MultiValueMap<String, String> queryParams,
+        UriComponentsBuilder uriBuilder,
+        Pageable pageable,
+        @RequestParam(value = "id", defaultValue = "0") String id,
+        @RequestParam(value = "nombre", defaultValue = "") String nombre,
+        @RequestParam(value = "apellidos", defaultValue = "") String apellidos,
+        @RequestParam(value = "dni", defaultValue = "") String dni
+    ) {
+        log.debug("REST request to clients by filter: {}", id, nombre, apellidos, dni);
+        final Page<Cliente> page = clienteService.getClientsByFilter(Long.parseLong(id), nombre, apellidos, dni, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

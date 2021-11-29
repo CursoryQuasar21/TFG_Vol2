@@ -23,6 +23,11 @@ export class EmpleadoComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  //Variables necesarias para filtrar la tabla
+  filtroId?: number;
+  filtroName?: string;
+  filtroSurName?: string;
+  filtroDni?: string;
 
   constructor(
     protected empleadoService: EmpleadoService,
@@ -51,6 +56,38 @@ export class EmpleadoComponent implements OnInit {
           this.onError();
         }
       );
+  }
+
+  //Metodo para filtrar la tabla de forma multiple
+  filter(page?: number, dontNavigate?: boolean): void {
+    if (this.filtroId !== undefined || this.filtroName !== undefined || this.filtroSurName !== undefined || this.filtroDni !== undefined) {
+      this.isLoading = true;
+      const pageToLoad: number = page ?? this.page ?? 1;
+      let idA = '';
+      if (this.filtroId !== undefined) {
+        idA = this.filtroId.toString();
+      }
+      this.empleadoService
+        .filter({
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          id: idA,
+          nombre: this.filtroName !== undefined ? this.filtroName : '',
+          apellidos: this.filtroSurName !== undefined ? this.filtroSurName : '',
+          dni: this.filtroDni !== undefined ? this.filtroDni : '',
+        })
+        .subscribe(
+          (res: HttpResponse<IEmpleado[]>) => {
+            this.isLoading = false;
+            this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          },
+          () => {
+            this.isLoading = false;
+            this.onError();
+          }
+        );
+    }
   }
 
   ngOnInit(): void {

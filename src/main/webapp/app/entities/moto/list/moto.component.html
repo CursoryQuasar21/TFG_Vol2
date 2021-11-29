@@ -43,6 +43,46 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
+          <td>
+            <input type="text" class="form-control" placeholder="Color" for="inputLarge" [(ngModel)]="filtroColor" (input)="filter()" />
+          </td>
+          <td>
+            <input type="text" class="form-control" placeholder="Model" for="inputLarge" [(ngModel)]="filtroModelo" (input)="filter()" />
+          </td>
+          <td>
+            <input type="text" class="form-control" placeholder="TradeMark" for="inputLarge" [(ngModel)]="filtroMarca" (input)="filter()" />
+          </td>
+          <td>
+            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaI" (input)="filter()" />
+            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaF" (input)="filter()" />
+          </td>
+          <td>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Price I"
+              for="inputLarge"
+              [(ngModel)]="filtroPrecioI"
+              (input)="filter()"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Price F"
+              for="inputLarge"
+              [(ngModel)]="filtroPrecioF"
+              (input)="filter()"
+            />
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Sale" for="inputLarge" [(ngModel)]="filtroVenta" (input)="filter()" />
+          </td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+          </td>
+        </tr>
         <tr *ngFor="let moto of motos; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/moto', moto.id, 'view']">{{ moto.id }}</a>

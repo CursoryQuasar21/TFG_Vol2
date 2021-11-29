@@ -9,6 +9,7 @@ import { ICliente } from '../cliente.model';
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { ClienteService } from '../service/cliente.service';
 import { ClienteDeleteDialogComponent } from '../delete/cliente-delete-dialog.component';
+import { Login } from 'app/login/login.model';
 
 @Component({
   selector: 'jhi-cliente',
@@ -23,6 +24,11 @@ export class ClienteComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  //Variables necesarias para filtrar la tabla
+  filtroId?: number;
+  filtroName?: string;
+  filtroSurName?: string;
+  filtroDni?: string;
 
   constructor(
     protected clienteService: ClienteService,
@@ -53,12 +59,50 @@ export class ClienteComponent implements OnInit {
       );
   }
 
+  //Metodo para filtrar la tabla de forma multiple
+  filter(page?: number, dontNavigate?: boolean): void {
+    if (this.filtroId !== undefined || this.filtroName !== undefined || this.filtroSurName !== undefined || this.filtroDni !== undefined) {
+      this.isLoading = true;
+      const pageToLoad: number = page ?? this.page ?? 1;
+      let idA = '';
+      if (this.filtroId !== undefined) {
+        idA = this.filtroId.toString();
+      }
+      this.clienteService
+        .filter({
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          id: idA,
+          nombre: this.filtroName !== undefined ? this.filtroName : '',
+          apellidos: this.filtroSurName !== undefined ? this.filtroSurName : '',
+          dni: this.filtroDni !== undefined ? this.filtroDni : '',
+        })
+        .subscribe(
+          (res: HttpResponse<ICliente[]>) => {
+            this.isLoading = false;
+            this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          },
+          () => {
+            this.isLoading = false;
+            this.onError();
+          }
+        );
+    }
+  }
+
   ngOnInit(): void {
     this.handleNavigation();
   }
 
   trackId(index: number, item: ICliente): number {
     return item.id!;
+  }
+
+  filtrarLista(): void {
+    // const fid=document.getElementsByClassName("form-control")[0].innerHTML;
+    // document.getElementsByClassName("form-control")[0].innerHTML="asdssdasad";
+    // document.getElementById("id")?.innerHTML="sadasd";
   }
 
   delete(cliente: ICliente): void {

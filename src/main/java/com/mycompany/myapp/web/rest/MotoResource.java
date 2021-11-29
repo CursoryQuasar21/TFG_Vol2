@@ -6,6 +6,7 @@ import com.mycompany.myapp.service.MotoService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,8 +20,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -161,6 +164,52 @@ public class MotoResource {
         log.debug("REST request to get Moto : {}", id);
         Optional<Moto> moto = motoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(moto);
+    }
+
+    /**
+     * {@code GET  /coches/:id&:color&:modelo&:marca&:precio&:venta} : get list coches.
+     * @param id the id of the coches to retrieve.
+     * @param color the color of the coches to retrieve.
+     * @param modelo the modelo of the coches to retrieve.
+     * @param marca the marca of the coches to retrieve.
+     * @param precio the precio of the coches to retrieve.
+     * @param venta the venta of the coches to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new coche, or with status {@code 400 (Bad Request)} if the coche has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @GetMapping(
+        value = "/motos/get-motos-by-filter",
+        params = { "id", "color", "modelo", "marca", "fechaI", "fechaF", "precioI", "precioF", "venta" }
+    )
+    public ResponseEntity<List<Moto>> getMotosByFilter(
+        @RequestParam MultiValueMap<String, String> queryParams,
+        UriComponentsBuilder uriBuilder,
+        Pageable pageable,
+        @RequestParam(value = "id", defaultValue = "0") String id,
+        @RequestParam(value = "color", defaultValue = "") String color,
+        @RequestParam(value = "modelo", defaultValue = "") String modelo,
+        @RequestParam(value = "marca", defaultValue = "") String marca,
+        @RequestParam(value = "fechaI") String fechaI,
+        @RequestParam(value = "fechaF") String fechaF,
+        @RequestParam(value = "precioI", defaultValue = "0") String precioI,
+        @RequestParam(value = "precioF", defaultValue = "0") String precioF,
+        @RequestParam(value = "venta", defaultValue = "0") String venta
+    ) {
+        log.debug("REST request to motos by filter: {}", id, color, modelo, marca, fechaI, fechaF, precioI, precioF, venta);
+        final Page<Moto> page = motoService.getMotosByFilter(
+            Long.parseLong(id),
+            color,
+            modelo,
+            marca,
+            Instant.parse(fechaI),
+            Instant.parse(fechaF),
+            Double.parseDouble(precioI),
+            Double.parseDouble(precioF),
+            Long.parseLong(venta),
+            pageable
+        );
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

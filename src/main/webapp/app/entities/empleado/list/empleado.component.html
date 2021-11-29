@@ -44,6 +44,19 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
+          <td>
+            <input type="text" class="form-control" placeholder="Name" for="inputLarge" [(ngModel)]="filtroName" (input)="filter()" />
+          </td>
+          <td>
+            <input type="text" class="form-control" placeholder="SurName" for="inputLarge" [(ngModel)]="filtroSurName" (input)="filter()" />
+          </td>
+          <td><input type="text" class="form-control" placeholder="DNI" for="inputLarge" [(ngModel)]="filtroDni" (input)="filter()" /></td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+          </td>
+        </tr>
         <tr *ngFor="let empleado of empleados; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/empleado', empleado.id, 'view']">{{ empleado.id }}</a>

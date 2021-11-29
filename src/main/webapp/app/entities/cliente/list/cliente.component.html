@@ -40,10 +40,22 @@
             <span jhiTranslate="tfgVol2App.cliente.apellidos">Apellidos</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="dni"><span jhiTranslate="tfgVol2App.cliente.dni">Dni</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
+          <td>
+            <input type="text" class="form-control" placeholder="Name" for="inputLarge" [(ngModel)]="filtroName" (input)="filter()" />
+          </td>
+          <td>
+            <input type="text" class="form-control" placeholder="SurName" for="inputLarge" [(ngModel)]="filtroSurName" (input)="filter()" />
+          </td>
+          <td><input type="text" class="form-control" placeholder="DNI" for="inputLarge" [(ngModel)]="filtroDni" (input)="filter()" /></td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+          </td>
+        </tr>
         <tr *ngFor="let cliente of clientes; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/cliente', cliente.id, 'view']">{{ cliente.id }}</a>

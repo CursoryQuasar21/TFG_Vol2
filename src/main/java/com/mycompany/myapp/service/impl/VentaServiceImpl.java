@@ -7,7 +7,9 @@ import com.mycompany.myapp.repository.CocheRepository;
 import com.mycompany.myapp.repository.MotoRepository;
 import com.mycompany.myapp.repository.VentaRepository;
 import com.mycompany.myapp.service.VentaService;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -95,6 +97,155 @@ public class VentaServiceImpl implements VentaService {
     public Optional<Venta> findOne(Long id) {
         log.debug("Request to get Venta : {}", id);
         return ventaRepository.findById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Venta> getSelesByFilter(
+        Long id,
+        Double totalI,
+        Double totalF,
+        Instant fechaI,
+        Instant fechaF,
+        Long idC,
+        Long idE,
+        Pageable pageable
+    ) {
+        log.debug("REST request to sales by filter: {}", id, totalI, totalF, fechaI, fechaF, idC, idE);
+        if (id == 0) {
+            if (totalI == 0) {
+                if (totalF == 0) {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilter(fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdE(fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdC(fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIds(fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                } else {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndTotalF(totalF, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndTotalFAndIdE(totalF, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndTotalFAndIdC(totalF, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndTotalFAndIds(totalF, fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                }
+            } else {
+                if (totalF == 0) {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndTotalI(totalI, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndTotalIAndIdE(totalI, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndTotalIAndIdC(totalI, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndTotalIAndIds(totalI, fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                } else {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndTotals(totalI, totalF, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndTotalsAndIdE(totalI, totalF, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndTotalsAndIdC(totalI, totalF, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndTotalsAndIds(totalI, totalF, fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                }
+            }
+        } else {
+            if (totalI == 0) {
+                if (totalF == 0) {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndId(id, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndIdE(id, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndIdC(id, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndIds(id, fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                } else {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalF(id, totalF, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalFAndIdE(id, totalF, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalFAndIdC(id, totalF, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalFAndIds(id, totalF, fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                }
+            } else {
+                if (totalF == 0) {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalI(id, totalI, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalIAndIdE(id, totalI, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalIAndIdC(id, totalI, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalIAndIds(id, totalI, fechaI, fechaF, idC, idE, pageable);
+                        }
+                    }
+                } else {
+                    if (idC == 0) {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndTotals(id, totalI, totalF, fechaI, fechaF, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalsAndIdE(id, totalI, totalF, fechaI, fechaF, idE, pageable);
+                        }
+                    } else {
+                        if (idE == 0) {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalsAndIdC(id, totalI, totalF, fechaI, fechaF, idC, pageable);
+                        } else {
+                            return ventaRepository.getSalesByFilterAndIdAndTotalsAndIds(
+                                id,
+                                totalI,
+                                totalF,
+                                fechaI,
+                                fechaF,
+                                idC,
+                                idE,
+                                pageable
+                            );
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override

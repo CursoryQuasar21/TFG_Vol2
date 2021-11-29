@@ -37,6 +37,16 @@ export class ClienteService {
     return this.http.get<ICliente[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  //Tuberia para pasar los datos del filtraddo y devolver los resultados
+  filter(req?: any): Observable<HttpResponse<ICliente[]>> {
+    const options = createRequestOption(req);
+    options.set('id', req.id);
+    options.set('nombre', req.nombre);
+    options.set('apellidos', req.apellidos);
+    options.set('dni', req.dni);
+    return this.http.get<ICliente[]>(`${this.resourceUrl}/get-clients-by-filter`, { params: options, observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

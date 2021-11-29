@@ -9,6 +9,7 @@ import { IMoto } from '../moto.model';
 import { ITEMS_PER_PAGE } from 'app/config/pagination.constants';
 import { MotoService } from '../service/moto.service';
 import { MotoDeleteDialogComponent } from '../delete/moto-delete-dialog.component';
+import { IVenta } from 'app/entities/venta/venta.model';
 
 @Component({
   selector: 'jhi-moto',
@@ -23,6 +24,18 @@ export class MotoComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  //Variables necesarias para filtrar la tabla
+  filtroId?: number;
+  filtroColor?: string;
+  filtroModelo?: string;
+  filtroMarca?: string;
+  filtroFechaI?: Date;
+  filtroFechaF?: Date;
+  filtroPrecioI?: number;
+  filtroPrecioF?: number;
+  filtroVenta?: number;
+  fechaIA?: string = '';
+  fechaFA?: string = '';
 
   constructor(
     protected motoService: MotoService,
@@ -53,6 +66,109 @@ export class MotoComponent implements OnInit {
       );
   }
 
+  //Metodo para filtrar la tabla de forma multiple
+  filter(page?: number, dontNavigate?: boolean): void {
+    if (
+      this.filtroId !== undefined ||
+      this.filtroColor !== undefined ||
+      this.filtroModelo !== undefined ||
+      this.filtroMarca !== undefined ||
+      this.filtroFechaI !== undefined ||
+      this.filtroFechaF !== undefined ||
+      this.filtroPrecioI !== undefined ||
+      this.filtroPrecioF !== undefined
+    ) {
+      this.isLoading = true;
+      const pageToLoad: number = page ?? this.page ?? 1;
+      let idA = '';
+      let colorA = '';
+      let modeloA = '';
+      let marcaA = '';
+      let precioIA = '';
+      let precioFA = '';
+      let ventaA = '';
+      if (this.filtroId !== undefined) {
+        idA = this.filtroId.toString();
+      }
+      if (this.filtroColor !== undefined) {
+        colorA = this.filtroColor.toString();
+      }
+      if (this.filtroModelo !== undefined) {
+        modeloA = this.filtroModelo.toString();
+      }
+      if (this.filtroMarca !== undefined) {
+        marcaA = this.filtroMarca.toString();
+      }
+      if (this.filtroFechaI !== undefined && this.filtroFechaI.toLocaleString() !== '') {
+        this.fechaIA = this.filtroFechaI.toLocaleString();
+        this.fechaIA = this.conversorFecha(this.fechaIA);
+      } else {
+        this.fechaIA = '1970-01-01T00:00:00.00Z';
+      }
+      if (this.filtroFechaF !== undefined && this.filtroFechaF.toLocaleString() !== '') {
+        this.fechaFA = this.filtroFechaF.toLocaleString();
+        this.fechaFA = this.conversorFecha(this.fechaFA);
+      } else {
+        const fechaAux = new Date(Date.now());
+        this.fechaFA = fechaAux.getFullYear().toString() + '-';
+        if (fechaAux.getMonth() < 10) {
+          this.fechaFA = this.fechaFA + '0';
+        }
+        this.fechaFA = this.fechaFA + fechaAux.getMonth().toString() + '-';
+        if (fechaAux.getDate() < 10) {
+          this.fechaFA = this.fechaFA + '0';
+        }
+        this.fechaFA = this.fechaFA + fechaAux.getDate().toString() + 'T';
+        if (fechaAux.getHours() < 10) {
+          this.fechaFA = this.fechaFA + '0';
+        }
+        this.fechaFA = this.fechaFA + fechaAux.getHours().toString() + ':';
+        if (fechaAux.getMinutes() < 10) {
+          this.fechaFA = this.fechaFA + '0';
+        }
+        this.fechaFA = this.fechaFA + fechaAux.getMinutes().toString() + ':';
+        if (fechaAux.getSeconds() < 10) {
+          this.fechaFA = this.fechaFA + '0';
+        }
+        this.fechaFA = this.fechaFA + fechaAux.getSeconds().toString() + '.00Z';
+      }
+      if (this.filtroPrecioI !== undefined) {
+        precioIA = this.filtroPrecioI.toString();
+      }
+      if (this.filtroPrecioF !== undefined) {
+        precioFA = this.filtroPrecioF.toString();
+      }
+      if (this.filtroVenta !== undefined) {
+        ventaA = this.filtroVenta.toString();
+      }
+      this.motoService
+        .filter({
+          page: pageToLoad - 1,
+          size: this.itemsPerPage,
+          sort: this.sort(),
+          id: idA,
+          color: colorA,
+          modelo: modeloA,
+          marca: marcaA,
+          fechaI: this.fechaIA,
+          fechaF: this.fechaFA,
+          precioI: precioIA,
+          precioF: precioFA,
+          venta: ventaA,
+        })
+        .subscribe(
+          (res: HttpResponse<IVenta[]>) => {
+            this.isLoading = false;
+            this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate);
+          },
+          () => {
+            this.isLoading = false;
+            this.onError();
+          }
+        );
+    }
+  }
+
   ngOnInit(): void {
     this.handleNavigation();
   }
@@ -70,6 +186,17 @@ export class MotoComponent implements OnInit {
         this.loadPage();
       }
     });
+  }
+
+  conversorFecha(cadena: string): string {
+    //27/11/2021 20:18:14
+    const exp1 = new RegExp(' ', 'g');
+    const fecha = cadena.split(' ', 2);
+    const exp2 = new RegExp('/', 'g');
+    const anios = fecha[0].split(exp2);
+    const anios2 = anios[0] + '-' + anios[1] + '-' + anios[2];
+    const fechaFinal = fecha[0] + ':00.00Z';
+    return fechaFinal; //2019-10-01T08:25:24.00Z
   }
 
   protected sort(): string[] {

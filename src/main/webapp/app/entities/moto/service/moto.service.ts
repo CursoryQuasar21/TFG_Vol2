@@ -44,7 +44,20 @@ export class MotoService {
       .get<IMoto>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
-
+  //Tuberia para pasar los datos del filtraddo y devolver los resultados
+  filter(req?: any): Observable<HttpResponse<IMoto[]>> {
+    const options = createRequestOption(req);
+    options.set('id', req.id);
+    options.set('color', req.color);
+    options.set('modelo', req.modelo);
+    options.set('marca', req.marca);
+    options.set('fechaI', req.fechaI);
+    options.set('fechaF', req.fechaF);
+    options.set('precioI', req.precioI);
+    options.set('precioF', req.precioF);
+    options.set('venta', req.venta);
+    return this.http.get<IMoto[]>(`${this.resourceUrl}/get-motos-by-filter`, { params: options, observe: 'response' });
+  }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

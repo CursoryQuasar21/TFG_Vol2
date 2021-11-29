@@ -42,6 +42,17 @@ public interface ClienteService {
     Optional<Cliente> findOne(Long id);
 
     /**
+     * Get cliente by filter.
+     * @param id the id of the entity.
+     * @param nombre the nombre of the entity.
+     * @param apellidos the apellidos of the entity.
+     * @param dni the dni of the entity.
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Cliente> getClientsByFilter(Long id, String nombre, String apellidos, String dni, Pageable pageable);
+
+    /**
      * Delete the "id" cliente.
      *
      * @param id the id of the entity.

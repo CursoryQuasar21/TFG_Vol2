@@ -45,6 +45,40 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
+          <td>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Price I"
+              for="inputLarge"
+              [(ngModel)]="filtroTotalI"
+              (input)="filter()"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Price E"
+              for="inputLarge"
+              [(ngModel)]="filtroTotalF"
+              (input)="filter()"
+            />
+          </td>
+          <td>
+            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaI" />
+            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaF" />
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroCliente" (input)="filter()" />
+          </td>
+          <td>
+            <input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroEmpleado" (input)="filter()" />
+          </td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+          </td>
+        </tr>
         <tr *ngFor="let venta of ventas; trackBy: trackId" data-cy="entityTable">
           <td>
             <a [routerLink]="['/venta', venta.id, 'view']">{{ venta.id }}</a>

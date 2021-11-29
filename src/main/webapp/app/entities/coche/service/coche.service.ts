@@ -45,6 +45,21 @@ export class CocheService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  //Tuberia para pasar los datos del filtraddo y devolver los resultados
+  filter(req?: any): Observable<HttpResponse<ICoche[]>> {
+    const options = createRequestOption(req);
+    options.set('id', req.id);
+    options.set('color', req.color);
+    options.set('modelo', req.modelo);
+    options.set('marca', req.marca);
+    options.set('fechaI', req.fechaI);
+    options.set('fechaF', req.fechaF);
+    options.set('precioI', req.precioI);
+    options.set('precioF', req.precioF);
+    options.set('venta', req.venta);
+    return this.http.get<ICoche[]>(`${this.resourceUrl}/get-cars-by-filter`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

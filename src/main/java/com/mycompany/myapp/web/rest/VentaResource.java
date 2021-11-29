@@ -6,6 +6,7 @@ import com.mycompany.myapp.service.VentaService;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,8 +20,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -161,6 +164,43 @@ public class VentaResource {
         log.debug("REST request to get Venta : {}", id);
         Optional<Venta> venta = ventaService.findOne(id);
         return ResponseUtil.wrapOrNotFound(venta);
+    }
+
+    /**
+     * {@code GET  /clientes/:id&:nombre&:apellidos&:dni} : get list clientes.
+     * @param id the id of the cliente to retrieve.
+     * @param nombre the name of the cliente to retrieve.
+     * @param apellidos the apellidos of the cliente to retrieve.
+     * @param dni the dni of the cliente to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new cliente, or with status {@code 400 (Bad Request)} if the cliente has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @GetMapping(value = "/ventas/get-sales-by-filter", params = { "id", "totalI", "totalF", "fechaI", "fechaF", "idC", "idE" })
+    public ResponseEntity<List<Venta>> getSalesByFilter(
+        @RequestParam MultiValueMap<String, String> queryParams,
+        UriComponentsBuilder uriBuilder,
+        Pageable pageable,
+        @RequestParam(value = "id", defaultValue = "0") String id,
+        @RequestParam(value = "totalI", defaultValue = "0") String totalI,
+        @RequestParam(value = "totalF", defaultValue = "0") String totalF,
+        @RequestParam(value = "fechaI") String fechaI,
+        @RequestParam(value = "fechaF") String fechaF,
+        @RequestParam(value = "idC", defaultValue = "0") String idC,
+        @RequestParam(value = "idE", defaultValue = "0") String idE
+    ) {
+        log.debug("REST request to sales by filter: {}", id, totalI, totalF, fechaI, fechaF, idC, idE);
+        final Page<Venta> page = ventaService.getSelesByFilter(
+            Long.parseLong(id),
+            Double.parseDouble(totalI),
+            Double.parseDouble(totalF),
+            Instant.parse(fechaI),
+            Instant.parse(fechaF),
+            Long.parseLong(idC),
+            Long.parseLong(idE),
+            pageable
+        );
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

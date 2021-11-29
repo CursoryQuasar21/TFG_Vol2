@@ -45,6 +45,19 @@ export class VentaService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  //Tuberia para pasar los datos del filtraddo y devolver los resultados
+  filter(req?: any): Observable<HttpResponse<IVenta[]>> {
+    const options = createRequestOption(req);
+    options.set('id', req.id);
+    options.set('totalI', req.totalI);
+    options.set('totalF', req.totalF);
+    options.set('fechaI', req.fechaI);
+    options.set('fechaF', req.fechaF);
+    options.set('idC', req.idC);
+    options.set('idE', req.idE);
+    return this.http.get<IVenta[]>(`${this.resourceUrl}/get-sales-by-filter`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

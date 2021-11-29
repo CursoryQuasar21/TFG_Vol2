@@ -19,8 +19,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -163,6 +165,31 @@ public class EmpleadoResource {
         log.debug("REST request to get Empleado : {}", id);
         Optional<Empleado> empleado = empleadoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(empleado);
+    }
+
+    /**
+     * {@code GET  /empleados/:id&:nombre&:apellidos&:dni} : get list empleados.
+     * @param id the id of the empleado to retrieve.
+     * @param nombre the nombre of the empleado to retrieve.
+     * @param apellidos the apellidos of the empleado to retrieve.
+     * @param dni the dni of the empleado to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new empleado, or with status {@code 400 (Bad Request)} if the empleado has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @GetMapping(value = "/empleados/get-employees-by-filter", params = { "id", "nombre", "apellidos", "dni" })
+    public ResponseEntity<List<Empleado>> getEmployeesByFilter(
+        @RequestParam MultiValueMap<String, String> queryParams,
+        UriComponentsBuilder uriBuilder,
+        Pageable pageable,
+        @RequestParam(value = "id", defaultValue = "0") String id,
+        @RequestParam(value = "nombre", defaultValue = "") String nombre,
+        @RequestParam(value = "apellidos", defaultValue = "") String apellidos,
+        @RequestParam(value = "dni", defaultValue = "") String dni
+    ) {
+        log.debug("REST request to employees by filter: {}", id, nombre, apellidos, dni);
+        final Page<Empleado> page = empleadoService.getEmployeesByFilter(Long.parseLong(id), nombre, apellidos, dni, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

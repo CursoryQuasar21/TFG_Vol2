@@ -71,6 +71,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Page<Empleado> getEmployeesByFilter(Long id, String nombre, String apellidos, String dni, Pageable pageable) {
+        if (id == 0) return empleadoRepository.getEmployeesByFilter(
+            nombre,
+            apellidos,
+            dni,
+            pageable
+        ); else return empleadoRepository.getEmployeesByFilter(id, nombre, apellidos, dni, pageable);
+    }
+
+    @Override
     public void delete(Long id) {
         log.debug("Request to delete Empleado : {}", id);
         empleadoRepository.deleteById(id);
