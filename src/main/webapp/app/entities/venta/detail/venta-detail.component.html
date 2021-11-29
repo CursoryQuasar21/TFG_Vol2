@@ -35,7 +35,91 @@
           </div>
         </dd>
       </dl>
-
+      <div>
+        <h2 class="text-muted" jhiTranslate="tfgVol2App.coche.home.title">Coches</h2>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 33.3%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            style="width: 33.4%"
+            aria-valuenow="30"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+          <div class="progress-bar" role="progressbar" style="width: 33.3%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <table class="table table-hover" id="tablaCoches">
+          <thead>
+            <tr>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.coche.id" for="field_id">Id</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.coche.color" for="field_color">Color</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.coche.modelo" for="field_modelo">Modelo</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.coche.marca" for="field_marca">Marca</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.coche.anio" for="field_anio">Año</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.coche.precio" for="field_precio">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let cocheOption of cochesSharedCollection; trackBy: trackCocheById; let i = index"
+              [ngClass]="{ 'table-active': i % 2 !== 0 }"
+            >
+              <td>{{ cocheOption.id }}</td>
+              <td>{{ cocheOption.color }}</td>
+              <td>{{ cocheOption.modelo }}</td>
+              <td>{{ cocheOption.marca }}</td>
+              <td>{{ cocheOption.anio }}</td>
+              <td>{{ cocheOption.precio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <br />
+      <div>
+        <h2 class="text-muted" jhiTranslate="tfgVol2App.moto.home.title">Motos</h2>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 33.3%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            style="width: 33.4%"
+            aria-valuenow="30"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+          <div class="progress-bar" role="progressbar" style="width: 33.3%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <table class="table table-hover" id="tablaMotos">
+          <thead>
+            <tr>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.moto.id" for="field_id">Id</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.moto.color" for="field_color">Color</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.moto.modelo" for="field_modelo">Modelo</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.moto.marca" for="field_marca">Marca</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.moto.anio" for="field_anio">Año</th>
+              <th class="table-dark" scope="col" jhiTranslate="tfgVol2App.moto.precio" for="field_precio">Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let motoOption of motosSharedCollection; trackBy: trackMotoById; let i2 = index"
+              [ngClass]="{ 'table-active': i2 % 2 !== 0 }"
+            >
+              <td>{{ motoOption.id }}</td>
+              <td>{{ motoOption.color }}</td>
+              <td>{{ motoOption.modelo }}</td>
+              <td>{{ motoOption.marca }}</td>
+              <td>{{ motoOption.anio }}</td>
+              <td>{{ motoOption.precio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <br />
+      <br />
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>

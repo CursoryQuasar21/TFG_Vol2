@@ -59,22 +59,8 @@
             <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaF" (input)="filter()" />
           </td>
           <td>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Price I"
-              for="inputLarge"
-              [(ngModel)]="filtroPrecioI"
-              (input)="filter()"
-            />
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Price F"
-              for="inputLarge"
-              [(ngModel)]="filtroPrecioF"
-              (input)="filter()"
-            />
+            <input type="number" class="form-control" placeholder="Price I" for="inputLarge" [(ngModel)]="filtroPrecioI" />
+            <input type="number" class="form-control" placeholder="Price F" for="inputLarge" [(ngModel)]="filtroPrecioF" />
           </td>
           <td>
             <input type="number" class="form-control" placeholder="Sale" for="inputLarge" [(ngModel)]="filtroVenta" (input)="filter()" />

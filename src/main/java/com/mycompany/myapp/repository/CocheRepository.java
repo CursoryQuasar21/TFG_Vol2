@@ -50,6 +50,19 @@ public interface CocheRepository extends JpaRepository<Coche, Long> {
         Pageable pageable
     );
 
+    /*
+    @Query(
+        value = "select venta from Venta venta where " +
+        "(venta.fecha between :fechaI and :fechaF)" +
+        "and venta.cliente.id like concat('%',:idC,'%')"
+    )
+    Page<Venta> getSalesByFilterAndIdC(
+        @Param("fechaI") Instant fechaI,
+        @Param("fechaF") Instant fechaF,
+        @Param("idC") Long idC,
+        Pageable pageable
+    );
+    */
     @Query(
         value = "select coche from Coche coche where " +
         "coche.color like concat('%',:color,'%') " +

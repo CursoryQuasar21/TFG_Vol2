@@ -91,6 +91,7 @@ public class CocheServiceImpl implements CocheService {
         Long venta,
         Pageable pageable
     ) {
+        log.debug("Request to get Coche by filter : {}", id, color, modelo, marca, fechaI, fechaF, precioI, precioF, venta);
         if (id == 0) {
             if (precioI == 0) {
                 if (precioF == 0) {
