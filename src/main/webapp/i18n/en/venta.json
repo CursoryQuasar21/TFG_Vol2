@@ -23,7 +23,17 @@
       "coche": "Coche",
       "moto": "Moto",
       "cliente": "Cliente",
-      "empleado": "Empleado"
+      "empleado": "Empleado",
+      "idFilter": "ID",
+      "totalIFilter": "Total Inicial",
+      "totalEFilter": "Total End",
+      "fechaIFilter": "Date Inicial",
+      "fechaEFilter": "Date End",
+      "cocheFilter": "Car",
+      "motoFilter": "Moto",
+      "clienteFilter": "Client",
+      "empleadoFilter": "Employee",
+      "botonF": "Filter"
     }
   }
 }

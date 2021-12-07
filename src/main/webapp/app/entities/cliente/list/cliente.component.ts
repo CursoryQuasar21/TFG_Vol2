@@ -99,12 +99,6 @@ export class ClienteComponent implements OnInit {
     return item.id!;
   }
 
-  filtrarLista(): void {
-    // const fid=document.getElementsByClassName("form-control")[0].innerHTML;
-    // document.getElementsByClassName("form-control")[0].innerHTML="asdssdasad";
-    // document.getElementById("id")?.innerHTML="sadasd";
-  }
-
   delete(cliente: ICliente): void {
     const modalRef = this.modalService.open(ClienteDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.cliente = cliente;

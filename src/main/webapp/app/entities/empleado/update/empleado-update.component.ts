@@ -19,7 +19,15 @@ export class EmpleadoUpdateComponent implements OnInit {
     id: [],
     nombre: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
     apellidos: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(40)]],
-    dni: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+    dni: [
+      null,
+      [
+        Validators.required,
+        Validators.minLength(9),
+        Validators.maxLength(9),
+        Validators.pattern('[0-9]{8}[A-Z]{1}') /*Validators.pattern("[A-Z]{1}[0-9]{8}[A-Z]{1}"),*/,
+      ],
+    ],
   });
 
   constructor(protected empleadoService: EmpleadoService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}

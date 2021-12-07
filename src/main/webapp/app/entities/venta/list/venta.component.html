@@ -46,23 +46,58 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
           <td>
-            <input type="number" class="form-control" placeholder="Price I" for="inputLarge" [(ngModel)]="filtroTotalI" />
-            <input type="number" class="form-control" placeholder="Price E" for="inputLarge" [(ngModel)]="filtroTotalF" />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.venta.idFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroId"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaI" (input)="filter()" />
-            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaF" (input)="filter()" />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.venta.totalIFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroTotalI"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.venta.totalEFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroTotalF"
+            />
           </td>
           <td>
-            <input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroCliente" (input)="filter()" />
+            <input type="datetime-local" class="form-control" for="inputLarge" />
+            <input type="datetime-local" class="form-control" for="inputLarge" />
           </td>
           <td>
-            <input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroEmpleado" (input)="filter()" />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.venta.clienteFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroCliente"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.venta.empleadoFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroEmpleado"
+              (input)="filter()"
+            />
+          </td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span jhiTranslate="tfgVol2App.venta.botonF">Filtrar</span></button>
           </td>
         </tr>
         <tr *ngFor="let venta of ventas; trackBy: trackId" data-cy="entityTable">

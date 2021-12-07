@@ -45,16 +45,48 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
           <td>
-            <input type="text" class="form-control" placeholder="Name" for="inputLarge" [(ngModel)]="filtroName" (input)="filter()" />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.empleado.idFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroId"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <input type="text" class="form-control" placeholder="SurName" for="inputLarge" [(ngModel)]="filtroSurName" (input)="filter()" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.empleado.nombreFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroName"
+              (input)="filter()"
+            />
           </td>
-          <td><input type="text" class="form-control" placeholder="DNI" for="inputLarge" [(ngModel)]="filtroDni" (input)="filter()" /></td>
           <td>
-            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.empleado.apellidosFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroSurName"
+              (input)="filter()"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.empleado.dniFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroDni"
+              (input)="filter()"
+            />
+          </td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span jhiTranslate="tfgVol2App.empleado.botonF">Filtrar</span></button>
           </td>
         </tr>
         <tr *ngFor="let empleado of empleados; trackBy: trackId" data-cy="entityTable">

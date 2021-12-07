@@ -10,11 +10,12 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Spring Data SQL repository for the Venta entity.
+ * Clase encargada de acceder a la base de datos mediante hibernate a la tabla Venta.
  */
 @SuppressWarnings("unused")
 @Repository
 public interface VentaRepository extends JpaRepository<Venta, Long> {
-    @Query(value = "select venta from Venta venta where " + "venta.fecha between :fechaI and :fechaF")
+    @Query(value = "select venta from Venta venta where venta.fecha between :fechaI and :fechaF")
     Page<Venta> getSalesByFilter(@Param("fechaI") Instant fechaI, @Param("fechaF") Instant fechaF, Pageable pageable);
 
     @Query(

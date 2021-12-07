@@ -23,7 +23,17 @@
       "marca": "Marca",
       "anio": "Anio",
       "precio": "Precio",
-      "venta": "Venta"
+      "venta": "Venta",
+      "idFilter": "ID",
+      "colorFilter": "Color",
+      "modeloFilter": "Modelo",
+      "marcaFilter": "Marca",
+      "anioIFilter": "Fecha Inicial",
+      "anioEFilter": "Fecha Final",
+      "precioIFilter": "Precio Inicial",
+      "precioEFilter": "Precio Final",
+      "ventaFilter": "Venta",
+      "botonF": "Filtrar"
     }
   }
 }

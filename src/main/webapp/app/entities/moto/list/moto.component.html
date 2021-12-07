@@ -44,29 +44,77 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="number" class="form-control" placeholder="Id" for="inputLarge" [(ngModel)]="filtroId" (input)="filter()" /></td>
           <td>
-            <input type="text" class="form-control" placeholder="Color" for="inputLarge" [(ngModel)]="filtroColor" (input)="filter()" />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.idFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroId"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <input type="text" class="form-control" placeholder="Model" for="inputLarge" [(ngModel)]="filtroModelo" (input)="filter()" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.colorFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroColor"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <input type="text" class="form-control" placeholder="TradeMark" for="inputLarge" [(ngModel)]="filtroMarca" (input)="filter()" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.modeloFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroModelo"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaI" (input)="filter()" />
-            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaF" (input)="filter()" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.marcaFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroMarca"
+              (input)="filter()"
+            />
           </td>
           <td>
-            <input type="number" class="form-control" placeholder="Price I" for="inputLarge" [(ngModel)]="filtroPrecioI" />
-            <input type="number" class="form-control" placeholder="Price F" for="inputLarge" [(ngModel)]="filtroPrecioF" />
+            <input type="datetime-local" class="form-control" for="inputLarge" />
+            <input type="datetime-local" class="form-control" for="inputLarge" />
           </td>
           <td>
-            <input type="number" class="form-control" placeholder="Sale" for="inputLarge" [(ngModel)]="filtroVenta" (input)="filter()" />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.precioIFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroPrecioI"
+            />
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.precioEFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroPrecioF"
+            />
           </td>
           <td>
-            <button (click)="filter()" class="btn btn-outline-info"><span>Filtrar</span></button>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="{{ 'tfgVol2App.moto.ventaFilter' | translate }}"
+              for="inputLarge"
+              [(ngModel)]="filtroVenta"
+            />
+          </td>
+          <td>
+            <button (click)="filter()" class="btn btn-outline-info"><span jhiTranslate="tfgVol2App.moto.botonF">Filtrar</span></button>
           </td>
         </tr>
         <tr *ngFor="let moto of motos; trackBy: trackId" data-cy="entityTable">

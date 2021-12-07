@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Spring Data SQL repository for the Cliente entity.
+ * Clase encargada de acceder a la base de datos mediante hibernate a la tabla Cliente.
  */
 @SuppressWarnings("unused")
 @Repository

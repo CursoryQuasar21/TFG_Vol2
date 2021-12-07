@@ -21,7 +21,13 @@
       "nombre": "Nombre",
       "apellidos": "Apellidos",
       "dni": "Dni",
-      "venta": "Venta"
+      "venta": "Venta",
+      "idFilter": "ID",
+      "nombreFilter": "Nombre",
+      "apellidosFilter": "Apellidos",
+      "dniFilter": "Dni",
+      "Filter": "Venta",
+      "botonF": "Filtrar"
     }
   }
 }

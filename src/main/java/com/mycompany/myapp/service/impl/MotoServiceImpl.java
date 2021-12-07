@@ -77,6 +77,8 @@ public class MotoServiceImpl implements MotoService {
         return motoRepository.findById(id);
     }
 
+    //Metodo Creado
+    //Sirve para aplicar los filtros y obtener los resultados de la base de datos
     @Override
     @Transactional(readOnly = true)
     public Page<Moto> getMotosByFilter(

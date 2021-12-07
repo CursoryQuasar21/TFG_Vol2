@@ -167,12 +167,13 @@ public class CocheResource {
     }
 
     /**
-     * {@code GET  /coches/:id&:color&:modelo&:marca&:precio&:venta} : get list coches.
+     * {@code GET  /coches/:id&:color&:modelo&:marca&:anio&:precio&:venta} : get list coches.
      * @param id the id of the coches to retrieve.
      * @param color the color of the coches to retrieve.
      * @param modelo the modelo of the coches to retrieve.
      * @param marca the marca of the coches to retrieve.
-     * @param precio the precio of the coches to retrieve.
+     * @param anio the anio(Range) of the coches to retrive.
+     * @param precio the precio(Range) of the coches to retrieve.
      * @param venta the venta of the coches to retrieve.
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new coche, or with status {@code 400 (Bad Request)} if the coche has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.

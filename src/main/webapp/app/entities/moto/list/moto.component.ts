@@ -114,7 +114,7 @@ export class MotoComponent implements OnInit {
         if (fechaAux.getMonth() < 10) {
           this.fechaFA = this.fechaFA + '0';
         }
-        this.fechaFA = this.fechaFA + fechaAux.getMonth().toString() + '-';
+        this.fechaFA = this.fechaFA + (fechaAux.getMonth() + 1).toString() + '-';
         if (fechaAux.getDate() < 10) {
           this.fechaFA = this.fechaFA + '0';
         }

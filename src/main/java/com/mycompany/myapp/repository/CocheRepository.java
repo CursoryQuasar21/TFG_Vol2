@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * Spring Data SQL repository for the Coche entity.
+ * Clase encargada de acceder a la base de datos mediante hibernate a la tabla Coche.
  */
 @SuppressWarnings("unused")
 @Repository
@@ -50,19 +51,6 @@ public interface CocheRepository extends JpaRepository<Coche, Long> {
         Pageable pageable
     );
 
-    /*
-    @Query(
-        value = "select venta from Venta venta where " +
-        "(venta.fecha between :fechaI and :fechaF)" +
-        "and venta.cliente.id like concat('%',:idC,'%')"
-    )
-    Page<Venta> getSalesByFilterAndIdC(
-        @Param("fechaI") Instant fechaI,
-        @Param("fechaF") Instant fechaF,
-        @Param("idC") Long idC,
-        Pageable pageable
-    );
-    */
     @Query(
         value = "select coche from Coche coche where " +
         "coche.color like concat('%',:color,'%') " +

@@ -18,10 +18,16 @@
         "title": "Cliente"
       },
       "id": "ID",
-      "nombre": "Nombre",
-      "apellidos": "Apellidos",
+      "nombre": "Name",
+      "apellidos": "SurName",
       "dni": "Dni",
-      "venta": "Venta"
+      "venta": "Sell",
+      "idFilter": "ID",
+      "nombreFilter": "Name",
+      "apellidosFilter": "SurName",
+      "dniFilter": "Dni",
+      "Filter": "Sell",
+      "botonF": "Filter"
     }
   }
 }

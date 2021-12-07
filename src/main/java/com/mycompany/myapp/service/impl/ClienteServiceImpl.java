@@ -70,6 +70,8 @@ public class ClienteServiceImpl implements ClienteService {
         return clienteRepository.findById(id);
     }
 
+    //Metodo Creado
+    //Sirve para aplicar los filtros y obtener los resultados de la base de datos
     @Override
     @Transactional(readOnly = true)
     public Page<Cliente> getClientsByFilter(Long id, String nombre, String apellidos, String dni, Pageable pageable) {

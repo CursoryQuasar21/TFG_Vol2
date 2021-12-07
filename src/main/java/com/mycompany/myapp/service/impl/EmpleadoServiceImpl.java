@@ -70,6 +70,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
         return empleadoRepository.findById(id);
     }
 
+    //Metodo Creado
+    //Sirve para aplicar los filtros y obtener los resultados de la base de datos
     @Override
     @Transactional(readOnly = true)
     public Page<Empleado> getEmployeesByFilter(Long id, String nombre, String apellidos, String dni, Pageable pageable) {

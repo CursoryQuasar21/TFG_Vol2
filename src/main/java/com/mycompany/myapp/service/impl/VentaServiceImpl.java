@@ -99,6 +99,8 @@ public class VentaServiceImpl implements VentaService {
         return ventaRepository.findById(id);
     }
 
+    //Metodo Creado
+    //Sirve para aplicar los filtros y obtener los resultados de la base de datos
     @Override
     @Transactional(readOnly = true)
     public Page<Venta> getSelesByFilter(
