@@ -73,8 +73,8 @@ export class CocheComponent implements OnInit {
       this.filtroColor !== undefined ||
       this.filtroModelo !== undefined ||
       this.filtroMarca !== undefined ||
-      this.filtroFechaI !== undefined ||
-      this.filtroFechaF !== undefined ||
+      this.filtroFechaI?.toLocaleString() !== undefined ||
+      this.filtroFechaF?.toLocaleString() !== undefined ||
       this.filtroPrecioI !== undefined ||
       this.filtroPrecioF !== undefined ||
       this.filtroVenta !== undefined

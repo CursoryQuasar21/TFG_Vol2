@@ -85,8 +85,8 @@
             />
           </td>
           <td>
-            <input type="datetime-local" class="form-control" for="inputLarge" />
-            <input type="datetime-local" class="form-control" for="inputLarge" />
+            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaI" />
+            <input type="datetime-local" class="form-control" for="inputLarge" [(ngModel)]="filtroFechaF" />
           </td>
           <td>
             <input
@@ -111,6 +111,7 @@
               placeholder="{{ 'tfgVol2App.moto.ventaFilter' | translate }}"
               for="inputLarge"
               [(ngModel)]="filtroVenta"
+              (input)="filter()"
             />
           </td>
           <td>

@@ -76,7 +76,8 @@ export class MotoComponent implements OnInit {
       this.filtroFechaI !== undefined ||
       this.filtroFechaF !== undefined ||
       this.filtroPrecioI !== undefined ||
-      this.filtroPrecioF !== undefined
+      this.filtroPrecioF !== undefined ||
+      this.filtroVenta !== undefined
     ) {
       this.isLoading = true;
       const pageToLoad: number = page ?? this.page ?? 1;
